@@ -16,7 +16,7 @@ suite('Platform Utils Test Suite', () => {
         try {
             if (process.platform === 'linux') {
                 sandbox.stub(fs, 'existsSync').withArgs('/etc/os-release').returns(true);
-                sandbox.stub(fs, 'readFileSync').withArgs('/etc/os-release', 'utf8').returns('PRETTY_NAME="openSUSE Tumbleweed"');
+                sandbox.stub(fs, 'readFileSync').withArgs('/etc/os-release', sinon.match.same('utf8')).returns('PRETTY_NAME="openSUSE Tumbleweed"');
             }
             const version = getDetailedOSVersion();
             if (process.platform === 'win32') {
